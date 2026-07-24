@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-RG_NAME="rg-lab-deploytest2"
+RG_NAME="rg-lab-deploytest"
 
 log() {
   echo "[$(date '+%H:%M:%S')] $1"

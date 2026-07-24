@@ -1,9 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-RG_NAME="rg-lab-deploytest2"
+RG_NAME="rg-lab-deploytest"
 LOCATION="westeurope"
-VM_NAME="vm-deploytest2"
+VM_NAME="vm-deploytest"
 VM_SIZE="Standard_D2s_v6"
 ADMIN_USER="azureuser"
 
