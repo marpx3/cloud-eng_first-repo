@@ -1,0 +1,7 @@
+[Unit]
+Description=Uhrzeit wird jede Minute geloggt
+[Service]
+ExecStart=/usr/local/bin/uhrzeit.sh
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target
