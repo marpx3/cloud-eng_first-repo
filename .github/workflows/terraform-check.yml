@@ -8,9 +8,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
       - run: terraform fmt -check -recursive
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
       - run: |
           for dir in projekt-04-hello-terraform  projekt-06-hub-spoke projekt-07-entra; do
             terraform -chdir=$dir init -backend=false
             terraform -chdir=$dir validate
           done
-
