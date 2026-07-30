@@ -82,7 +82,7 @@ resource "azurerm_network_interface_security_group_association" "lab" {
 resource "azurerm_linux_virtual_machine" "lab" {
   name                = "vm-${local.prefix}-marcotf"
   resource_group_name = azurerm_resource_group.lab.name
-  location                       = azurerm_resource_group.lab.location
+  location            = azurerm_resource_group.lab.location
   size                = "Standard_D2s_v6"
   admin_username      = "azureuser"
 
@@ -98,7 +98,7 @@ resource "azurerm_linux_virtual_machine" "lab" {
   }
 
   os_disk {
-    caching              =               "ReadWrite"
+    caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
 
