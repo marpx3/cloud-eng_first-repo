@@ -14,3 +14,9 @@ variable "location" {
   description = "Name der Location"
   default     = "westeurope"
 }
+
+variable "ssh_public_key" {
+  type        = string
+  description = "SSH Public Key fuer die VM"
+  default     = ""
+}

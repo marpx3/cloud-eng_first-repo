@@ -14,3 +14,9 @@ variable "location" {
   description = "Region wo die ressource deployed wird (bsp. westeurope)"
   default     = "westeurope"
 }
+
+variable "ssh_public_key" {
+  type        = string
+  description = "SSH Public Key fuer die VM"
+  default     = ""
+}
