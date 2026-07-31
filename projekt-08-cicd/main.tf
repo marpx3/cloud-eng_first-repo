@@ -11,3 +11,12 @@ resource "azurerm_role_assignment" "github-rbac" {
   role_definition_name = "Contributor"
   scope                = data.azurerm_subscription.sub.id
 }
+
+
+resource "azuread_application_federated_identity_credential" "github-actions-pr" {
+  application_id = data.azuread_application.deployer.id
+  display_name   = "github-actions-pr"
+  issuer         = "https://token.actions.githubusercontent.com"
+  subject        = "repo:marpx3/cloud-eng_first-repo:pull_request"
+  audiences      = ["api://AzureADTokenExchange"]
+}
