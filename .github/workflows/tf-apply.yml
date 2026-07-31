@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: tf-apply
+  group: tf-deploy-selbsttest-01
   cancel-in-progress: false
 
 env:                        

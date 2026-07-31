@@ -5,6 +5,10 @@ permissions:
     id-token: write
     contents: read
 
+concurrency:
+  group: tf-deploy-selbsttest-01
+  cancel-in-progress: false
+
 env:                        
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
