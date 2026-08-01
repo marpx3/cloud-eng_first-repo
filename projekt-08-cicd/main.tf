@@ -20,3 +20,11 @@ resource "azuread_application_federated_identity_credential" "github-actions-pr"
   subject        = "repo:marpx3/cloud-eng_first-repo:pull_request"
   audiences      = ["api://AzureADTokenExchange"]
 }
+
+resource "azuread_application_federated_identity_credential" "github-prod" {
+  application_id = data.azuread_application.deployer.id
+  display_name   = "github-actions-prod"
+  issuer         = "https://token.actions.githubusercontent.com"
+  subject        = "repo:marpx3/cloud-eng_first-repo:environment:prod"
+  audiences      = ["api://AzureADTokenExchange"]
+}
