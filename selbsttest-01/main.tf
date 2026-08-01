@@ -9,7 +9,7 @@ module "selbsttest-01" {
 }
 
 resource "azurerm_container_registry" "acrtfmarco92771" {
-  name                = "acrconterReg${var.environment}"
+  name                = "acrconterreg${var.environment}"
   resource_group_name = module.selbsttest-01.rg-name
   location            = module.selbsttest-01.location
   admin_enabled       = false
