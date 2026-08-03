@@ -46,4 +46,14 @@ resource "azurerm_container_app" "acamarco91283" {
       percentage      = 100
     }
   }
+
+  identity {
+    type = "SystemAssigned"
+  }
 }
+
+/* resource "azurerm_role_assignment" "aca_acrpull" {
+  scope                = azurerm_container_registry.acrtfmarco92771.id
+  role_definition_name = "AcrPull"
+  principal_id         = azurerm_container_app.acamarco91283.identity[0].principal_id
+} */
