@@ -32,7 +32,7 @@ resource "azurerm_container_app" "acamarco91283" {
   template {
     container {
       name   = "aconmarco912183"
-      image  = "mcr.microsoft.com/k8se/quickstart:latest"
+      image  = "${azurerm_container_registry.acrtfmarco92771.login_server}/meine-seite:v11"
       cpu    = 0.25
       memory = "0.5Gi"
     }
@@ -49,6 +49,11 @@ resource "azurerm_container_app" "acamarco91283" {
 
   identity {
     type = "SystemAssigned"
+  }
+
+  registry {
+    server   = azurerm_container_registry.acrtfmarco92771.login_server
+    identity = "System" # pull mit der SystemAssigned-Identität
   }
 }
 

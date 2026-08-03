@@ -28,3 +28,9 @@ resource "azuread_application_federated_identity_credential" "github-prod" {
   subject        = "repo:marpx3/cloud-eng_first-repo:environment:prod"
   audiences      = ["api://AzureADTokenExchange"]
 }
+
+resource "azurerm_role_assignment" "github_rbac_admin" {
+  scope                = data.azurerm_subscription.sub.id
+  role_definition_name = "Role Based Access Control Administrator"
+  principal_id         = data.azuread_service_principal.a-sp.object_id
+}
