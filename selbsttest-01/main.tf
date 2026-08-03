@@ -16,3 +16,34 @@ resource "azurerm_container_registry" "acrtfmarco92771" {
 
   sku = "Basic"
 }
+
+resource "azurerm_container_app_environment" "acaenvmarco91283" {
+  name                = "acaenvmarco${var.environment}"
+  resource_group_name = module.selbsttest-01.rg-name
+  location            = module.selbsttest-01.location
+}
+
+resource "azurerm_container_app" "acamarco91283" {
+  name                         = "acamarco${var.environment}"
+  container_app_environment_id = azurerm_container_app_environment.acaenvmarco91283.id
+  resource_group_name          = module.selbsttest-01.rg-name
+  revision_mode                = "Single"
+
+  template {
+    container {
+      name   = "aconmarco912183"
+      image  = "mcr.microsoft.com/k8se/quickstart:latest"
+      cpu    = 0.25
+      memory = "0.5Gi"
+    }
+  }
+
+  ingress {
+    external_enabled = true
+    target_port      = 80
+    traffic_weight {
+      latest_revision = true
+      percentage      = 100
+    }
+  }
+}
