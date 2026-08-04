@@ -1,3 +1,37 @@
 name: app-deploy
 on:
   push:
+    branches: [main]
+    paths:
+      - "projekt-10-container/**"
+
+permissions: 
+  id-token: write
+  contents: read
+
+concurrency:
+  group: tf-deploy-selbsttest-01
+  cancel-in-progress: false
+
+env:                        
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_USE_OIDC: "true"
+  COMMIT_HASH: ${{ github.sha }}
+  
+jobs:
+  app-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - run: az extension add --name containerapp --upgrade
+      - run: az acr login --name acrconterRegdev
+      - run: docker build -t acrconterregdev.azurecr.io/meine-seite:${{ github.sha }} projekt-10-container
+      - run: docker push  acrconterregdev.azurecr.io/meine-seite:${{ github.sha }}
+      - run: az containerapp update --name acamarcodev --resource-group rg-st-dev --image acrconterregdev.azurecr.io/meine-seite:${{ github.sha }}
