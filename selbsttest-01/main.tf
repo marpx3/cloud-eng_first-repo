@@ -55,6 +55,10 @@ resource "azurerm_container_app" "acamarco91283" {
     server   = azurerm_container_registry.acrtfmarco92771.login_server
     identity = "System" # pull mit der SystemAssigned-Identität
   }
+
+  lifecycle {
+    ignore_changes = [template[0].container[0].image]
+  }
 }
 
 resource "azurerm_role_assignment" "aca_acrpull" {
