@@ -4,6 +4,16 @@ resource "azurerm_resource_group" "this" {
 }
 
 resource "azurerm_storage_account" "this" {
+
+  #checkov:skip=CKV_AZURE_33:Lab - not cost efficent for Lab
+  #checkov:skip=CKV_AZURE_206:Lab - false positiv LRS is enabled via variable
+  #checkov:skip=CKV2_AZURE_1:Lab - not cost efficent for Lab
+  #checkov:skip=CKV2_AZURE_41:Lab - not cost efficent for Lab
+  #checkov:skip=CKV2_AZURE_40:Lab - not cost efficent for Lab
+  #checkov:skip=CKV2_AZURE_33:Lab - not cost efficent for Lab
+  #checkov:skip=CKV2_AZURE_38:Lab - not cost efficent for Lab
+
+
   name                            = var.sa_name
   resource_group_name             = azurerm_resource_group.this.name
   location                        = azurerm_resource_group.this.location
