@@ -8,10 +8,19 @@ module "selbsttest-01" {
   public_network_access_enabled = false
 }
 
-#checkov:skip=CKV_AZURE_139:Lab - public access noetig, kein Private Endpoint Budget
-#checkov:skip=CKV_AZURE_233:Lab - keine Zonenredundanz noetig
+
 
 resource "azurerm_container_registry" "acrtfmarco92771" {
+
+  #checkov:skip=CKV_AZURE_139:Lab - public access noetig, kein Private Endpoint Budget
+  #checkov:skip=CKV_AZURE_233:Lab - keine Zonenredundanz noetig
+  #checkov:skip=CKV_AZURE_237:Lab - public access is neccesary
+  #checkov:skip=CKV_AZURE_164:Lab - private lab image
+  #checkov:skip=CKV_AZURE_165:Lab - private lab image
+  #checkov:skip=CKV_AZURE_166:Lab - private lab image
+  #checkov:skip=CKV_AZURE_163:Lab - private lab image
+  #checkov:skip=CKV_AZURE_167:Lab - private lab image
+
   name                = "acrconterreg${var.environment}"
   resource_group_name = module.selbsttest-01.rg-name
   location            = module.selbsttest-01.location
