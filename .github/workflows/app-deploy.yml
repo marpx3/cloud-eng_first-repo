@@ -1,0 +1,3 @@
+name: app-deploy
+on:
+  push:
