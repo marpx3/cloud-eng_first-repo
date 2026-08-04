@@ -11,6 +11,7 @@ resource "azurerm_storage_account" "this" {
   #checkov:skip=CKV2_AZURE_41:Lab - not cost efficent for Lab
   #checkov:skip=CKV2_AZURE_40:Lab - not cost efficent for Lab
   #checkov:skip=CKV2_AZURE_33:Lab - not cost efficent for Lab
+  #checkov:skip=CKV2_AZURE_38:Lab - not cost efficent for Lab
 
 
   name                            = var.sa_name
