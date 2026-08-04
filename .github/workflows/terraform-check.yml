@@ -18,3 +18,13 @@ jobs:
             terraform -chdir=$dir init -backend=false
             terraform -chdir=$dir validate
           done
+        
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: selbsttest-01
+          quiet: true
+          soft_fail: true
